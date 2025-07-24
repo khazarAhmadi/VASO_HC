@@ -16,6 +16,7 @@ Additional code dependencies:
 
 * [`fmri_denoising`](https://github.com/dmascali/fmri_denoising) (for physiological denoising, aka, 'aCompCor')
 * [`NORDIC_Raw`](https://github.com/SteenMoeller/NORDIC_Raw) (adapted for VASO)
+* [`presurfer`] (https://github.com/srikash/presurfer). (MP2RAGE background noise removal)
 
 ## 📁 Folder Structure & Main Scripts
 
