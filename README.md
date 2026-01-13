@@ -1,7 +1,6 @@
-## Analysis Codes for blood volume sensitive laminar fMRI with VASO in human hippocampus
+## Analysis codes for blood volume sensitive laminar fMRI with VASO in human hippocampus
 
-This repository contains scripts for **preprocessing and layerification of the hippocampus** using submillimeter VASO-based fMRI data acquired at **7 Tesla**. The study aims to optimize and validate VASO for assessing **laminar profiles in hippocampal subfields**.  
-
+This repository contains scripts for preprocessing and layerification of the hippocampal subfields using submillimeter VASO-based fMRI data acquired at 7 Tesla. 
 ---
 
 ## Software Requirements
@@ -14,9 +13,6 @@ Before running the scripts, ensure the following neuroimaging software packages 
 - **HippUnfold**  
 - **SPM**  
 - **ITK-SNAP** (for manual alignment)  
-
-Additionally, the following tools are recommended for VASO-specific preprocessing:
-
 - **NORDIC denoising** (tailored for VASO)  
 - **PReSurfer**: [https://github.com/srikash/presurfer](https://github.com/srikash/presurfer)  
 - **MATLAB codes for aCompCor**: [https://github.com/dmascali/fmri_denoising](https://github.com/dmascali/fmri_denoising)  
