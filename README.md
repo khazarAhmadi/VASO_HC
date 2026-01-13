@@ -14,7 +14,7 @@ Before running the scripts, ensure the following neuroimaging software packages 
 - **SPM**  
 - **ITK-SNAP** (for manual alignment)  
 - **NORDIC denoising** (tailored for VASO)  
-- **PReSurfer**: [https://github.com/srikash/presurfer](https://github.com/srikash/presurfer)  
+- **PreSurfer**: [https://github.com/srikash/presurfer](https://github.com/srikash/presurfer)  
 - **MATLAB codes for aCompCor**: [https://github.com/dmascali/fmri_denoising](https://github.com/dmascali/fmri_denoising)  
 
 ---
