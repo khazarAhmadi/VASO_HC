@@ -3,7 +3,7 @@
 # acquired across three scanners
 ##------------------------------------------------------------
 
-setwd('Desktop/VASO_HC/Figs_script')
+
 library(ggplot2)
 library(readxl)
 

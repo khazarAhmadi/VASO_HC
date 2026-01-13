@@ -3,7 +3,7 @@
 # This script should be run from the parent directory (i.e., the "Part2" folder) after the SPM first-level analyses have been completed.
 
 #--------------------------------------------------
-# Section 1: Compute the mean activity within each subfield and subject, based on significant clusters from the memory vs. math contrast.
+# Section 1: Compute the mean activity within each subfield and subject, based on a conjunction ROI of significant clusters for BOLD + VASO from the memory vs. math contrast.
 #--------------------------------------------------
 
 # first get a binary mask of each subfield from HippUnfold outputs. 
@@ -24,29 +24,44 @@ subjects=(001 002 003 004 005 006)
 
 # bold
 paste -d' ' FOLDERS-ANAT.txt <(printf "%s\n" "${subjects[@]}") | while read anat_dir subj; do
-  subj_dir="${subj}/func/first_level/bold"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-sub.nii.gz" -nan "${subj_dir}/Sub_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca1.nii.gz" -nan "${subj_dir}/ca1_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca2.nii.gz" -nan "${subj_dir}/ca2_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca3.nii.gz" -nan "${subj_dir}/ca3_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-DG.nii.gz" -nan "${subj_dir}/DG_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-SRLM.nii.gz" -nan "${subj_dir}/SRLM_sig_clust.nii.gz"
+  subj_dir_b="${subj}/func/first_level/bold"
+  fslmaths "${subj_dir_b}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-sub.nii.gz" -nan "${subj_dir_b}/Sub_sig_clust.nii.gz"
+  fslmaths "${subj_dir_b}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca1.nii.gz" -nan "${subj_dir_b}/ca1_sig_clust.nii.gz"
+  fslmaths "${subj_dir_b}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca2.nii.gz" -nan "${subj_dir_b}/ca2_sig_clust.nii.gz"
+  fslmaths "${subj_dir_b}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca3.nii.gz" -nan "${subj_dir_b}/ca3_sig_clust.nii.gz"
+  fslmaths "${subj_dir_b}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-DG.nii.gz" -nan "${subj_dir_b}/DG_sig_clust.nii.gz"
+  fslmaths "${subj_dir_b}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-SRLM.nii.gz" -nan "${subj_dir_b}/SRLM_sig_clust.nii.gz"
 done
 
 # repeat it for vaso
 paste -d' ' FOLDERS-ANAT.txt <(printf "%s\n" "${subjects[@]}") | while read anat_dir subj; do
-  subj_dir="${subj}/func/first_level/vaso"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-sub.nii.gz" -nan "${subj_dir}/Sub_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca1.nii.gz" -nan "${subj_dir}/ca1_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca2.nii.gz" -nan "${subj_dir}/ca2_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca3.nii.gz" -nan "${subj_dir}/ca3_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-DG.nii.gz" -nan "${subj_dir}/DG_sig_clust.nii.gz"
-  fslmaths "${subj_dir}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-SRLM.nii.gz" -nan "${subj_dir}/SRLM_sig_clust.nii.gz"
+  subj_dir_v="${subj}/func/first_level/vaso"
+  fslmaths "${subj_dir_v}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-sub.nii.gz" -nan "${subj_dir_v}/Sub_sig_clust.nii.gz"
+  fslmaths "${subj_dir_v}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca1.nii.gz" -nan "${subj_dir_v}/ca1_sig_clust.nii.gz"
+  fslmaths "${subj_dir_v}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca2.nii.gz" -nan "${subj_dir_v}/ca2_sig_clust.nii.gz"
+  fslmaths "${subj_dir_v}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-ca3.nii.gz" -nan "${subj_dir_v}/ca3_sig_clust.nii.gz"
+  fslmaths "${subj_dir_v}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-DG.nii.gz" -nan "${subj_dir_v}/DG_sig_clust.nii.gz"
+  fslmaths "${subj_dir_v}/mem_math_sig_clust.nii" -mul "${anat_dir}/HUoutput_T1/hippunfold/left-SRLM.nii.gz" -nan "${subj_dir_v}/SRLM_sig_clust.nii.gz"
 done
+
+
+# concatenate the significant subfields  
+
+for subj in "${subjects[@]}"; do
+	subj_dir_b="${subj}/func/first_level/bold"
+	subj_dir_v="${subj}/func/first_level/vaso"
+	fslmaths "${subj_dir_b}/Sub_sig_clust.nii.gz" -bin -add "${subj_dir_v}/Sub_sig_clust.nii.gz" -bin "${subj}/func/first_level/Sub_sig_both_contrasts.nii.gz"
+	fslmaths "${subj_dir_b}/ca1_sig_clust.nii.gz" -bin -add "${subj_dir_v}/ca1_sig_clust.nii.gz" -bin "${subj}/func/first_level/CA1_sig_both_contrasts.nii.gz"
+	fslmaths "${subj_dir_b}/ca2_sig_clust.nii.gz" -bin -add "${subj_dir_v}/ca2_sig_clust.nii.gz" -bin "${subj}/func/first_level/CA2_sig_both_contrasts.nii.gz"
+	fslmaths "${subj_dir_b}/ca3_sig_clust.nii.gz" -bin -add "${subj_dir_v}/ca3_sig_clust.nii.gz" -bin "${subj}/func/first_level/CA3_sig_both_contrasts.nii.gz"
+	fslmaths "${subj_dir_b}/DG_sig_clust.nii.gz" -bin -add "${subj_dir_v}/DG_sig_clust.nii.gz" -bin "${subj}/func/first_level/DG_sig_both_contrasts.nii.gz"
+	fslmaths "${subj_dir_b}/SRLM_sig_clust.nii.gz" -bin -add "${subj_dir_v}/SRLM_sig_clust.nii.gz" -bin "${subj}/func/first_level/SRLM_sig_both_contrasts.nii.gz"
+done 
+
 
 # Define the subfields and their corresponding output names
 
-subfields=("Sub" "ca1" "ca22" "ca3" "DG" "SRLM")
+subfields=("Sub" "ca1" "ca2" "ca3" "DG" "SRLM")
 output_files_bold=("bold_Sub_activity.txt" "bold_CA1_activity.txt" "bold_CA2_activity.txt" "bold_CA3_activity.txt" "bold_DG_activity.txt" "bold_SRLM_activity.txt")
 output_files_vaso=("vaso_Sub_activity.txt" "vaso_CA1_activity.txt" "vaso_CA2_activity.txt" "vaso_CA3_activity.txt" "vaso_DG_activity.txt" "vaso_SRLM_activity.txt")
 
@@ -62,11 +77,55 @@ for i in "${!subjects[@]}"; do
     output_file_vaso="${output_files_vaso[$j]}"
 
     # Compute the mean activity for each subfield and append to the corresponding output file
-    fslstats "${subj_dir}/bold/${subfield}_sig_clust.nii.gz" -M >> "${output_file_bold}"
-    fslstats "${subj_dir}/vaso/${subfield}_sig_clust.nii.gz" -M >> "${output_file_vaso}"
+    fslstats "${subj_dir}/bold/con_0001.nii" -k  "${subj_dir}/${subfield}_sig_both_contrasts.nii.gz" -M -S >> "${output_file_bold}"
+    fslstats "${subj_dir}/vaso/con_0001.nii" -k "${subj_dir}/${subfield}_sig_both_contrasts.nii.gz" -M -S  >> "${output_file_vaso}"
   done
 done
 
+
+# Now get the mean activity across entire anatomically defined ROIs regardless of significant clusters 
+
+anat_masks=("left-sub" "left-ca1" "left-ca2" "left-ca3" "left-DG" "left-SRLM")
+
+output_files_bold_anat=(
+  "bold_Sub_anat_activity.txt"
+  "bold_CA1_anat_activity.txt"
+  "bold_CA2_anat_activity.txt"
+  "bold_CA3_anat_activity.txt"
+  "bold_DG_anat_activity.txt"
+  "bold_SRLM_anat_activity.txt"
+)
+
+output_files_vaso_anat=(
+  "vaso_Sub_anat_activity.txt"
+  "vaso_CA1_anat_activity.txt"
+  "vaso_CA2_anat_activity.txt"
+  "vaso_CA3_anat_activity.txt"
+  "vaso_DG_anat_activity.txt"
+  "vaso_SRLM_anat_activity.txt"
+)
+
+
+for i in "${!subjects[@]}"; do
+  subj="${subjects[$i]}"
+  subj_dir="${subj}/func/first_level"
+
+  # you need the correct anat_dir for each subject
+  anat_dir=$(sed -n "$((i+1))p" FOLDERS-ANAT.txt)
+
+  for j in "${!anat_masks[@]}"; do
+    mask="${anat_dir}/HUoutput_T1/hippunfold/${anat_masks[$j]}.nii.gz"
+
+    # BOLD
+    fslstats "${subj_dir}/bold/con_0001.nii" \
+      -k "$mask" -M -S >> "${output_files_bold_anat[$j]}"
+
+    # VASO
+    fslstats "${subj_dir}/vaso/con_0001.nii" \
+      -k "$mask" -M -S >> "${output_files_vaso_anat[$j]}"
+
+  done
+done
 
 #--------------------------------------------------
 # Section 2: Register individual contrast maps to template space, required for second-level analysis
