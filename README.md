@@ -7,8 +7,8 @@ This repository contains scripts for preprocessing and layerification of the hip
 
 Before running the scripts, ensure the following neuroimaging software packages are installed:
 
-- **AFNI**  
-- **FSL**  
+- **AFNI** 
+- **FSL** 
 - **ANTs**  
 - **HippUnfold**  
 - **SPM**  
